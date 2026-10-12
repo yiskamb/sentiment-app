@@ -120,7 +120,7 @@ def train_models():
 art = train_models()
 model = art["pipeline"]
 
-st.title("💬 Triase Sentimen Ulasan Aplikasi")
+st.title("Triase Sentimen Ulasan Aplikasi")
 st.write(
     "Prototipe klasifikasi sentimen ulasan pengguna aplikasi mobile "
     "(Negatif = keluhan, Positif = apresiasi) dengan metodologi CRISP-DM."
