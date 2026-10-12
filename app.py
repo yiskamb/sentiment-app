@@ -69,8 +69,8 @@ def train_models():
         bagian.append(d)
     df_clean = pd.concat(bagian).sample(frac=1, random_state=42).reset_index(drop=True)
 
-    X = df_clean["text_clean"].values
-    y = df_clean["sentiment"].values
+    X = df_clean["text_clean"].astype(str).tolist()
+    y = df_clean["sentiment"].to_numpy()
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, stratify=y, random_state=42
     )
