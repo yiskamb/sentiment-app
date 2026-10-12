@@ -16,7 +16,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 
-st.set_page_config(page_title="Triase Sentimen Ulasan Gojek", page_icon="💬")
+st.set_page_config(page_title="Triase Sentimen Ulasan Gojek")
 
 CSV_FILE = "ulasan_com.gojek.app.csv"
 
