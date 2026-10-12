@@ -59,15 +59,13 @@ def train_models():
     df = df[df["Rating"] != 3].copy()
     df["sentiment"] = df["Rating"].apply(lambda r: 0 if r in [1, 2] else 1)
 
-    # Sampel seimbang (dibersihkan setelah disampel agar cepat)
-    bagian = []
-    for label in (0, 1):
-        d = df[df["sentiment"] == label]
-        d = d.sample(n=min(5500, len(d)), random_state=42).copy()
-        d["text_clean"] = d["Ulasan"].apply(clean_text)
-        d = d[d["text_clean"].str.split().str.len() >= 2].head(5000)
-        bagian.append(d)
-    df_clean = pd.concat(bagian).sample(frac=1, random_state=42).reset_index(drop=True)
+    # Urutan sama dengan notebook: bersihkan semua, buang < 2 kata, baru sampling
+    df["text_clean"] = df["Ulasan"].apply(clean_text)
+    df = df[df["text_clean"].str.split().str.len() >= 2].copy()
+
+    df_neg = df[df["sentiment"] == 0].sample(n=5000, random_state=42)
+    df_pos = df[df["sentiment"] == 1].sample(n=5000, random_state=42)
+    df_clean = pd.concat([df_neg, df_pos]).sample(frac=1, random_state=42).reset_index(drop=True)
 
     X = df_clean["text_clean"].astype(str).tolist()
     y = df_clean["sentiment"].to_numpy()
@@ -79,7 +77,7 @@ def train_models():
     kandidat = {
         "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
         "Multinomial Naive Bayes": MultinomialNB(),
-        "LinearSVC": LinearSVC(random_state=42),
+        "LinearSVC": LinearSVC(random_state=42, dual="auto"),
     }
     hasil, pipes = [], {}
     for nama, clf in kandidat.items():
