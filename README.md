@@ -6,7 +6,7 @@ Klasifikasi sentimen biner (negatif/positif) ulasan aplikasi Gojek di Google Pla
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yiskamb/sentiment-app/blob/main/proyek_triase_sentimen_gojek.ipynb)
 
 ## Versi Streamlit
-Aplikasi: ISI_TAUTAN_STREAMLIT
+Aplikasi: https://review-sentiment-triage.streamlit.app/
 
 ## Isi repositori
 - `proyek_triase_sentimen_gojek.ipynb`: analisis lengkap CRISP-DM
